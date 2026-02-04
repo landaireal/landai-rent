@@ -15,7 +15,8 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
-import { Loader2 } from "lucide-react";
+import { Loader2, Send } from "lucide-react";
+import { motion } from "framer-motion";
 
 export function ContactForm() {
   const { t } = useLanguage();
@@ -53,7 +54,7 @@ export function ContactForm() {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 bg-card p-8 rounded-2xl shadow-lg border border-border">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 glass-card p-10 rounded-3xl shadow-2xl border-2 border-amber-500/20">
         <FormField
           control={form.control}
           name="name"
@@ -108,20 +109,33 @@ export function ContactForm() {
             </FormItem>
           )}
         />
-        <Button 
-          type="submit" 
-          disabled={mutation.isPending}
-          className="w-full h-12 text-lg bg-primary hover:bg-primary/90"
+        {/* Elegant Submit Button */}
+        <motion.div
+          className="w-full"
+          whileHover={{ y: mutation.isPending ? 0 : -2 }}
+          whileTap={{ scale: mutation.isPending ? 1 : 0.98 }}
+          transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
         >
-          {mutation.isPending ? (
-            <>
-              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-              {t("contact.sending")}
-            </>
-          ) : (
-            t("contact.submit")
-          )}
-        </Button>
+          <Button 
+            type="submit" 
+            disabled={mutation.isPending}
+            className="btn-elegant btn-elegant-primary w-full py-6 h-auto rounded-lg text-lg font-semibold tracking-wide"
+          >
+            <span className="flex items-center justify-center gap-2">
+              {mutation.isPending ? (
+                <>
+                  <Loader2 className="h-5 w-5 animate-spin" />
+                  Sending...
+                </>
+              ) : (
+                <>
+                  <Send className="h-5 w-5" />
+                  Send Message
+                </>
+              )}
+            </span>
+          </Button>
+        </motion.div>
       </form>
     </Form>
   );

@@ -3,6 +3,7 @@ import { useLanguage } from "@/hooks/use-language";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Globe, Moon, Sun } from "lucide-react";
 import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 import logo1 from "@assets/logo_1_1770120807165.jpeg";
 import logo2 from "@assets/logo_2_1770120807165.jpeg";
 
@@ -46,65 +47,90 @@ export function Navbar() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         isScrolled
-          ? "bg-white/90 dark:bg-slate-900/90 backdrop-blur-md shadow-md py-3"
-          : "bg-transparent py-5"
+          ? "glass-card py-3 shadow-2xl"
+          : "bg-transparent py-6"
       }`}
       dir={dir}
     >
       <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
         {/* Logo */}
         <Link href="/">
-          <div className="flex items-center gap-3 cursor-pointer">
-            <img 
-              src={Logo} 
-              alt="Land AI Real Estate" 
-              className="h-10 w-10 md:h-12 md:w-12 rounded-full object-cover border-2 border-primary/20 dark:border-accent/50" 
-            />
-            <span className={`text-xl md:text-2xl font-bold tracking-tight ${isScrolled || isDark ? 'text-primary dark:text-white' : 'text-primary dark:text-white'}`}>
-              Land AI
-            </span>
-          </div>
+          <motion.div 
+            className="flex items-center gap-3 cursor-pointer group"
+            whileHover={{ scale: 1.05 }}
+            transition={{ duration: 0.3 }}
+          >
+            <div className="relative">
+              <div className="absolute inset-0 gradient-bg-accent rounded-full blur-lg opacity-0 group-hover:opacity-50 transition-opacity duration-300" />
+              <img 
+                src={Logo} 
+                alt="Land AI Real Estate" 
+                className="h-12 w-12 md:h-14 md:w-14 rounded-2xl object-cover border-2 border-white/20 relative z-10 shadow-lg" 
+              />
+            </div>
+            <div>
+              <span className={`text-2xl md:text-3xl font-black tracking-tight ${isScrolled ? 'gradient-text-primary' : 'text-white'} transition-all duration-300`}>
+                Land AI
+              </span>
+              <div className="text-xs text-muted-foreground font-medium tracking-wide hidden md:block">Real Estate</div>
+            </div>
+          </motion.div>
         </Link>
 
         {/* Desktop Nav */}
-        <div className="hidden lg:flex items-center gap-8">
+        <div className="hidden lg:flex items-center gap-2">
           {navLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
-              className={`text-sm font-medium transition-colors hover:text-accent ${
-                location === link.href ? "text-accent font-semibold" : "text-foreground/80"
-              }`}
+              className={`relative px-4 py-2.5 text-sm font-bold transition-all duration-300 rounded-xl ${
+                location === link.href 
+                  ? "gradient-text-primary" 
+                  : isScrolled 
+                    ? "text-foreground/70 hover:text-foreground" 
+                    : "text-white/80 hover:text-white"
+              } ${location === link.href ? 'glass-card-light' : 'hover:glass-card-light'}`}
             >
               {link.label}
+              {location === link.href && (
+                <motion.div
+                  layoutId="activeNav"
+                  className="absolute bottom-0 left-0 right-0 h-0.5 gradient-bg-accent rounded-full"
+                  transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                />
+              )}
             </a>
           ))}
         </div>
 
         {/* Actions */}
-        <div className="hidden lg:flex items-center gap-4">
+        <div className="hidden lg:flex items-center gap-3">
           <Button
             variant="ghost"
             size="icon"
             onClick={toggleLanguage}
-            className="rounded-full hover:bg-primary/10"
+            className={`rounded-2xl w-12 h-12 font-black text-base transition-all duration-300 ${
+              isScrolled ? 'glass-card-light hover:gradient-bg-primary hover:text-white' : 'bg-white/10 hover:bg-white/20 text-white backdrop-blur-xl'
+            }`}
             title={language === "en" ? "Switch to Arabic" : "Switch to English"}
           >
-            <span className="font-bold text-lg">{language === "en" ? "ع" : "EN"}</span>
+            {language === "en" ? "ع" : "EN"}
           </Button>
           
           <Button
             variant="ghost"
             size="icon"
             onClick={() => setIsDark(!isDark)}
-            className="rounded-full hover:bg-primary/10"
+            className={`rounded-2xl w-12 h-12 transition-all duration-300 ${
+              isScrolled ? 'glass-card-light hover:gradient-bg-primary hover:text-white' : 'bg-white/10 hover:bg-white/20 text-white backdrop-blur-xl'
+            }`}
           >
             {isDark ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
           </Button>
 
-          <Button className="bg-primary hover:bg-primary/90 text-white rounded-full px-6">
+          <Button className="gradient-bg-accent hover:opacity-90 text-white rounded-2xl px-8 h-12 font-bold btn-3d shadow-2xl">
             {t("hero.cta")}
           </Button>
         </div>
@@ -115,14 +141,18 @@ export function Navbar() {
             variant="ghost"
             size="icon"
             onClick={toggleLanguage}
-            className="rounded-full"
+            className={`rounded-2xl w-10 h-10 font-black ${
+              isScrolled ? 'glass-card-light' : 'bg-white/10 text-white backdrop-blur-xl'
+            }`}
           >
-             <span className="font-bold">{language === "en" ? "ع" : "EN"}</span>
+             {language === "en" ? "ع" : "EN"}
           </Button>
 
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="p-2 text-foreground"
+            className={`p-2.5 rounded-2xl transition-all ${
+              isScrolled ? 'glass-card-light text-foreground' : 'bg-white/10 text-white backdrop-blur-xl'
+            }`}
           >
             {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
@@ -131,34 +161,47 @@ export function Navbar() {
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <div className="lg:hidden absolute top-full left-0 right-0 bg-background border-b border-border p-4 shadow-lg animate-in slide-in-from-top-5">
-          <div className="flex flex-col gap-4">
-            {navLinks.map((link) => (
-              <a
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -20 }}
+          className="lg:hidden absolute top-full left-0 right-0 glass-card border-b border-border/50 shadow-2xl backdrop-blur-2xl mt-2 mx-4 rounded-3xl"
+        >
+          <div className="flex flex-col gap-3 p-6">
+            {navLinks.map((link, i) => (
+              <motion.a
                 key={link.href}
                 href={link.href}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="text-lg font-medium p-2 hover:bg-muted rounded-lg"
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: i * 0.1 }}
+                className={`text-lg font-bold p-4 rounded-2xl transition-all ${
+                  location === link.href 
+                    ? 'gradient-bg-primary text-white' 
+                    : 'glass-card-light hover:gradient-bg-primary hover:text-white'
+                }`}
               >
                 {link.label}
-              </a>
+              </motion.a>
             ))}
-            <div className="flex items-center justify-between pt-4 border-t border-border">
-              <span className="text-sm font-medium">Dark Mode</span>
+            <div className="flex items-center justify-between pt-4 border-t border-border/50 mt-2">
+              <span className="text-sm font-bold">Dark Mode</span>
               <Button
                 variant="outline"
                 size="sm"
                 onClick={() => setIsDark(!isDark)}
+                className="glass-card-light rounded-xl font-bold"
               >
                 {isDark ? <Sun className="h-4 w-4 mr-2" /> : <Moon className="h-4 w-4 mr-2" />}
                 {isDark ? "Light" : "Dark"}
               </Button>
             </div>
-            <Button className="w-full mt-2" onClick={() => setIsMobileMenuOpen(false)}>
+            <Button className="w-full mt-4 gradient-bg-accent text-white font-bold py-6 rounded-2xl btn-3d" onClick={() => setIsMobileMenuOpen(false)}>
               {t("hero.cta")}
             </Button>
           </div>
-        </div>
+        </motion.div>
       )}
     </nav>
   );
