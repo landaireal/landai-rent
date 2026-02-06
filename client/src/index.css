@@ -5,27 +5,27 @@
 @tailwind utilities;
 
 :root {
-  /* Modern Black, Purple & Blue Theme - Sophisticated & Premium */
-  --background: 0 0% 100%;
-  --foreground: 0 0% 5%;
+  /* Professional Business Light Mode - Clean & Modern */
+  --background: 0 0% 100%; /* Pure White */
+  --foreground: 220 13% 13%; /* Dark Charcoal */
   
-  --primary: 0 0% 10%; /* Deep Black */
-  --primary-foreground: 250 95% 65%;
+  --primary: 220 13% 13%; /* Dark Charcoal */
+  --primary-foreground: 0 0% 100%;
   
-  --secondary: 240 15% 95%; /* Light Gray-Blue */
-  --secondary-foreground: 0 0% 10%;
+  --secondary: 220 14% 96%; /* Light Gray */
+  --secondary-foreground: 220 13% 13%;
   
-  --muted: 240 10% 96%;
-  --muted-foreground: 0 0% 45%;
+  --muted: 220 14% 96%;
+  --muted-foreground: 220 9% 46%;
   
-  --accent: 250 95% 65%; /* Vibrant Purple */
+  --accent: 250 95% 65%; /* Professional Purple */
   --accent-foreground: 0 0% 100%;
   
   --destructive: 0 84% 60%;
   --destructive-foreground: 0 0% 100%;
 
-  --border: 240 15% 92%;
-  --input: 240 15% 92%;
+  --border: 220 13% 91%;
+  --input: 220 13% 91%;
   --ring: 250 95% 65%;
   
   --radius: 1rem;
@@ -33,41 +33,41 @@
   --font-en: 'Inter', sans-serif;
   --font-ar: 'Cairo', sans-serif;
   
-  /* 3D Effect Variables - Purple & Blue Glow */
-  --shadow-elevation-low: 0 2px 8px rgba(0, 0, 0, 0.08), 0 1px 4px rgba(0, 0, 0, 0.06);
-  --shadow-elevation-medium: 0 4px 16px rgba(0, 0, 0, 0.1), 0 2px 8px rgba(0, 0, 0, 0.08);
-  --shadow-elevation-high: 0 8px 32px rgba(0, 0, 0, 0.12), 0 4px 16px rgba(0, 0, 0, 0.1);
-  --shadow-glow: 0 0 30px rgba(139, 92, 246, 0.3), 0 0 60px rgba(139, 92, 246, 0.15);
+  /* Professional Shadows - Subtle & Clean */
+  --shadow-elevation-low: 0 1px 3px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.06);
+  --shadow-elevation-medium: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-elevation-high: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-glow: 0 0 20px rgba(139, 92, 246, 0.15), 0 0 40px rgba(139, 92, 246, 0.08);
 }
 
 .dark {
-  /* Modern Black, Purple & Blue Dark Theme - Premium Night Mode */
-  --background: 0 0% 8%;
-  --foreground: 250 95% 96%;
+  /* Professional Business Dark Mode - Deep & Elegant */
+  --background: 220 13% 9%; /* Deep Charcoal */
+  --foreground: 220 14% 96%;
   
-  --primary: 250 95% 65%; /* Purple Primary in Dark */
-  --primary-foreground: 0 0% 8%;
+  --primary: 250 95% 65%; /* Professional Purple */
+  --primary-foreground: 220 13% 9%;
   
-  --secondary: 240 15% 15%; /* Dark Charcoal-Blue */
-  --secondary-foreground: 250 95% 96%;
+  --secondary: 220 13% 15%; /* Dark Gray */
+  --secondary-foreground: 220 14% 96%;
   
-  --muted: 0 0% 12%;
-  --muted-foreground: 240 10% 65%;
+  --muted: 220 13% 15%;
+  --muted-foreground: 220 9% 65%;
   
   --accent: 220 90% 60%; /* Bright Blue Accent */
-  --accent-foreground: 0 0% 8%;
+  --accent-foreground: 220 13% 9%;
   
   --destructive: 0 80% 60%;
-  --destructive-foreground: 0 0% 98%;
+  --destructive-foreground: 220 14% 96%;
   
-  --border: 240 10% 18%;
-  --input: 240 10% 15%;
+  --border: 220 13% 20%;
+  --input: 220 13% 18%;
   --ring: 250 95% 65%;
   
-  --shadow-elevation-low: 0 2px 12px rgba(0, 0, 0, 0.6), 0 4px 20px rgba(139, 92, 246, 0.08);
-  --shadow-elevation-medium: 0 4px 24px rgba(0, 0, 0, 0.7), 0 8px 32px rgba(139, 92, 246, 0.12);
-  --shadow-elevation-high: 0 8px 48px rgba(0, 0, 0, 0.8), 0 16px 64px rgba(139, 92, 246, 0.15);
-  --shadow-glow: 0 0 40px rgba(139, 92, 246, 0.4), 0 0 80px rgba(59, 130, 246, 0.2);
+  --shadow-elevation-low: 0 2px 10px rgba(0, 0, 0, 0.5), 0 1px 5px rgba(139, 92, 246, 0.05);
+  --shadow-elevation-medium: 0 4px 20px rgba(0, 0, 0, 0.6), 0 2px 10px rgba(139, 92, 246, 0.08);
+  --shadow-elevation-high: 0 10px 40px rgba(0, 0, 0, 0.7), 0 4px 20px rgba(139, 92, 246, 0.1);
+  --shadow-glow: 0 0 30px rgba(139, 92, 246, 0.3), 0 0 60px rgba(59, 130, 246, 0.15);
 }
 
 @layer base {
