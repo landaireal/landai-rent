@@ -31,12 +31,11 @@ export function Navbar() {
   }, [isDark]);
 
   const navLinks = [
-    { href: "/", label: t("nav.home") },
-    { href: "/#services", label: t("nav.services") },
+    { href: "/", label: t("nav.home") || "Home" },
+    { href: "/about", label: t("nav.about") || "About" },
+    { href: "/services", label: t("nav.services") },
     { href: "/properties", label: t("nav.properties") },
-    { href: "/#investors", label: t("nav.investors") },
-    { href: "/#management", label: t("nav.management") },
-    { href: "/#contact", label: t("nav.contact") },
+    { href: "/contact", label: t("contact.title") }
   ];
 
   const toggleLanguage = () => {
@@ -82,26 +81,26 @@ export function Navbar() {
         {/* Desktop Nav */}
         <div className="hidden lg:flex items-center gap-2">
           {navLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className={`relative px-4 py-2.5 text-sm font-bold transition-all duration-300 rounded-xl ${
-                location === link.href 
-                  ? "gradient-text-primary" 
-                  : isScrolled 
-                    ? "text-foreground/70 hover:text-foreground" 
-                    : "text-white/80 hover:text-white"
-              } ${location === link.href ? 'glass-card-light' : 'hover:glass-card-light'}`}
-            >
-              {link.label}
-              {location === link.href && (
-                <motion.div
-                  layoutId="activeNav"
-                  className="absolute bottom-0 left-0 right-0 h-0.5 gradient-bg-accent rounded-full"
-                  transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                />
-              )}
-            </a>
+            <Link key={link.href} href={link.href}>
+              <a
+                className={`relative px-4 py-2.5 text-sm font-bold transition-all duration-300 rounded-xl cursor-pointer ${
+                  location === link.href 
+                    ? "gradient-text-primary" 
+                    : isScrolled 
+                      ? "text-foreground/70 hover:text-foreground" 
+                      : "text-white/80 hover:text-white"
+                } ${location === link.href ? 'glass-card-light' : 'hover:glass-card-light'}`}
+              >
+                {link.label}
+                {location === link.href && (
+                  <motion.div
+                    layoutId="activeNav"
+                    className="absolute bottom-0 left-0 right-0 h-0.5 gradient-bg-accent rounded-full"
+                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                  />
+                )}
+              </a>
+            </Link>
           ))}
         </div>
 
@@ -169,21 +168,21 @@ export function Navbar() {
         >
           <div className="flex flex-col gap-3 p-6">
             {navLinks.map((link, i) => (
-              <motion.a
-                key={link.href}
-                href={link.href}
-                onClick={() => setIsMobileMenuOpen(false)}
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: i * 0.1 }}
-                className={`text-lg font-bold p-4 rounded-2xl transition-all ${
-                  location === link.href 
-                    ? 'gradient-bg-primary text-white' 
-                    : 'glass-card-light hover:gradient-bg-primary hover:text-white'
-                }`}
-              >
-                {link.label}
-              </motion.a>
+              <Link key={link.href} href={link.href}>
+                <motion.a
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: i * 0.1 }}
+                  className={`text-lg font-bold p-4 rounded-2xl transition-all cursor-pointer ${
+                    location === link.href 
+                      ? 'gradient-bg-primary text-white' 
+                      : 'glass-card-light hover:gradient-bg-primary hover:text-white'
+                  }`}
+                >
+                  {link.label}
+                </motion.a>
+              </Link>
             ))}
             <div className="flex items-center justify-between pt-4 border-t border-border/50 mt-2">
               <span className="text-sm font-bold">Dark Mode</span>

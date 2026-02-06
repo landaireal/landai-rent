@@ -3,6 +3,8 @@ import type { Server } from "http";
 import { storage } from "./storage";
 import { api } from "@shared/routes";
 import { z } from "zod";
+import { db } from "./db";             // Drizzle instance
+import { properties } from "./schema"; // جدول properties
 
 export async function registerRoutes(
   httpServer: Server,
@@ -10,8 +12,8 @@ export async function registerRoutes(
 ): Promise<Server> {
   // Properties
   app.get(api.properties.list.path, async (req, res) => {
-    const properties = await storage.getProperties();
-    res.json(properties);
+    const propertiesList = await storage.getProperties();
+    res.json(propertiesList);
   });
 
   app.get(api.properties.get.path, async (req, res) => {
@@ -54,6 +56,19 @@ export async function registerRoutes(
       throw err;
     }
   });
+
+  // ✅ Endpoint اختبار قاعدة البيانات Drizzle
+  app.get("/api/test-db", async (req, res) => {
+    if (!db) return res.status(500).json({ error: "DB not connected" });
+
+    try {
+      const data = await db.select().from(properties);
+      res.json(data); // كل العقارات من جدول properties
+    } catch (err) {
+      res.status(500).json({ error: (err as Error).message });
+    }
+  });
+
 
   // Seed Data if empty
   const existingProperties = await storage.getProperties();
