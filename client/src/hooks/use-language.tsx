@@ -11,19 +11,23 @@ interface LanguageContextType {
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
-// Simple translation dictionary
+// Complete translation dictionary
 const translations: Record<string, Record<Language, string>> = {
+  // Navigation
   "nav.home": { en: "Home", ar: "الرئيسية" },
+  "nav.about": { en: "About", ar: "من نحن" },
   "nav.services": { en: "Services", ar: "خدماتنا" },
-  "nav.properties": { en: "Properties", ar: "عقارات" },
+  "nav.properties": { en: "Properties", ar: "العقارات" },
   "nav.investors": { en: "Investors", ar: "المستثمرين" },
   "nav.management": { en: "Management", ar: "الإدارة" },
   "nav.contact": { en: "Contact", ar: "اتصل بنا" },
   
+  // Hero Section
   "hero.title": { en: "Find Your Dream Luxury Home in UAE", ar: "اعثر على منزل أحلامك الفاخر في الإمارات" },
   "hero.subtitle": { en: "Exclusive properties in Dubai & Abu Dhabi tailored to your lifestyle.", ar: "عقارات حصرية في دبي وأبوظبي مصممة لتناسب أسلوب حياتك." },
   "hero.cta": { en: "Explore Properties", ar: "تصفح العقارات" },
   
+  // Services
   "services.title": { en: "Our Premium Services", ar: "خدماتنا المتميزة" },
   "services.brokerage": { en: "Real Estate Brokerage", ar: "الوساطة العقارية" },
   "services.brokerage.desc": { en: "Buying, selling, and leasing properties with expert guidance.", ar: "شراء وبيع وتأجير العقارات بتوجيه الخبراء." },
@@ -36,18 +40,29 @@ const translations: Record<string, Record<Language, string>> = {
   "services.ecommerce": { en: "E-Commerce", ar: "التجارة الإلكترونية" },
   "services.ecommerce.desc": { en: "Marketing via social media platforms.", ar: "التسويق عبر منصات التواصل الاجتماعي." },
 
-  "featured.title": { en: "Featured Properties", ar: "عقارات مميزة" },
+  // Properties
+  "featured.title": { en: "Featured Properties", ar: "العقارات المميزة" },
   "featured.price": { en: "Price", ar: "السعر" },
   "featured.area": { en: "Area", ar: "المساحة" },
   "featured.sqft": { en: "sqft", ar: "قدم مربع" },
   "featured.view": { en: "View Details", ar: "عرض التفاصيل" },
+  "properties.all": { en: "All Properties", ar: "جميع العقارات" },
+  "properties.search": { en: "Search by location or name", ar: "البحث حسب الموقع أو الاسم" },
+  "properties.filters": { en: "Filters", ar: "التصفية" },
+  "properties.sort": { en: "Sort By", ar: "ترتيب حسب" },
+  "properties.showing": { en: "Showing", ar: "عرض" },
+  "properties.results": { en: "properties", ar: "عقار" },
 
+  // Investors
   "investors.title": { en: "For Investors", ar: "للمستثمرين" },
   "investors.desc": { en: "Maximize your returns with our expert market analysis and premium investment opportunities in the UAE real estate market.", ar: "ضاعف عائداتك مع تحليلاتنا الخبيرة للسوق وفرص الاستثمار المتميزة في سوق العقارات الإماراتي." },
   
+  // Management
   "management.title": { en: "Leadership", ar: "القيادة" },
   "management.role": { en: "Owner", ar: "المالك" },
+  "management.founder": { en: "Founder & CEO", ar: "المؤسس والرئيس التنفيذي" },
   
+  // Contact
   "contact.title": { en: "Contact Us", ar: "اتصل بنا" },
   "contact.name": { en: "Your Name", ar: "اسمك" },
   "contact.email": { en: "Email Address", ar: "البريد الإلكتروني" },
@@ -56,6 +71,29 @@ const translations: Record<string, Record<Language, string>> = {
   "contact.submit": { en: "Send Message", ar: "إرسال الرسالة" },
   "contact.sending": { en: "Sending...", ar: "جار الإرسال..." },
   "contact.success": { en: "Message Sent!", ar: "تم الإرسال!" },
+  "contact.getintouch": { en: "Get In Touch", ar: "تواصل معنا" },
+  "contact.locations": { en: "Our Locations", ar: "مواقعنا" },
+  "contact.hours": { en: "Business Hours", ar: "ساعات العمل" },
+  
+  // About
+  "about.title": { en: "About Land AI", ar: "عن لاند أي" },
+  "about.subtitle": { en: "Your Trusted Partner in UAE Real Estate", ar: "شريكك الموثوق في العقارات الإماراتية" },
+  "about.story": { en: "Our Story", ar: "قصتنا" },
+  "about.mission": { en: "Our Mission", ar: "رسالتنا" },
+  "about.vision": { en: "Our Vision", ar: "رؤيتنا" },
+  "about.values": { en: "Our Values", ar: "قيمنا" },
+  "about.team": { en: "Our Team", ar: "فريقنا" },
+  
+  // Common
+  "common.home": { en: "Home", ar: "الرئيسية" },
+  "common.back": { en: "Back", ar: "رجوع" },
+  "common.loading": { en: "Loading", ar: "جاري التحميل" },
+  "common.learnmore": { en: "Learn More", ar: "اعرف المزيد" },
+  "common.readmore": { en: "Read More", ar: "اقرأ المزيد" },
+  "common.viewall": { en: "View All", ar: "عرض الكل" },
+  "common.close": { en: "Close", ar: "إغلاق" },
+  "common.submit": { en: "Submit", ar: "إرسال" },
+  "common.cancel": { en: "Cancel", ar: "إلغاء" },
 };
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
