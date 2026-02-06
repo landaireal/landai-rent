@@ -5,6 +5,7 @@ import { MapPin, Home, Ruler, ArrowRight } from "lucide-react";
 import { useLanguage } from "@/hooks/use-language";
 import type { Property } from "@shared/schema";
 import { motion } from "framer-motion";
+import { Link } from "wouter";
 
 interface PropertyCardProps {
   property: Property;
@@ -18,12 +19,13 @@ export function PropertyCard({ property }: PropertyCardProps) {
   const features = (property.features as string[]) || [];
 
   return (
-    <motion.div
-      whileHover={{ y: -12, rotateY: 2 }}
-      transition={{ duration: 0.5, ease: [0.23, 1, 0.32, 1] }}
-      className="h-full perspective-container"
-    >
-      <Card className="overflow-hidden glass-card h-full flex flex-col relative group card-3d border-none">
+    <Link href={`/property/${property.id}`}>
+      <motion.div
+        whileHover={{ y: -12, rotateY: 2 }}
+        transition={{ duration: 0.5, ease: [0.23, 1, 0.32, 1] }}
+        className="h-full perspective-container cursor-pointer"
+      >
+        <Card className="overflow-hidden glass-card h-full flex flex-col relative group card-3d border-none">
         {/* Hover Glow Effect */}
         <div className="absolute inset-0 bg-gradient-to-br from-purple-500/0 via-cyan-500/0 to-pink-500/0 group-hover:from-purple-500/10 group-hover:via-cyan-500/10 group-hover:to-pink-500/10 transition-all duration-500 rounded-3xl pointer-events-none z-10" />
         
@@ -122,5 +124,6 @@ export function PropertyCard({ property }: PropertyCardProps) {
         <div className="absolute inset-0 shimmer opacity-0 group-hover:opacity-100 pointer-events-none rounded-3xl" />
       </Card>
     </motion.div>
+    </Link>
   );
 }
